@@ -217,7 +217,16 @@
       initFirebaseDatabase();
       const snapshot = await databaseRef.once('value');
       const remote = snapshot.val();
-      if (!remote || typeof remote !== 'object') throw new Error('Firebase đang trống.');
+      // Lần đầu dùng: nếu Firebase chưa có dữ liệu, khởi tạo một bộ dữ liệu chung.
+      // Ưu tiên dữ liệu cục bộ hiện có để tránh bỏ mất dữ liệu của người dùng.
+      if (!remote || typeof remote !== 'object') {
+        const initialData = normalizeData(local || defaultData());
+        await databaseRef.set(initialData);
+        cloudReady = true;
+        getStorage().setItem(STORAGE_KEY, JSON.stringify(initialData));
+        watchFirebaseChanges();
+        return initialData;
+      }
       const data = normalizeData(remote);
       cloudReady = true;
       getStorage().setItem(STORAGE_KEY, JSON.stringify(data));

@@ -1,18 +1,18 @@
-HÀNH KIỂM - FIREBASE DÙNG CHUNG CSDL
+HƯỚNG DẪN ĐƯA WEBSITE LÊN MẠNG VÀ ĐỒNG BỘ ĐIỆN THOẠI - MÁY TÍNH
 
-Phiên bản này dùng Firebase Realtime Database trực tiếp từ website.
-GitHub Pages chỉ cần phục vụ các file tĩnh; server.js không còn cần cho việc lưu dữ liệu.
+1. Giải nén ZIP. Mở thư mục hanhkiem_revised.
+2. Tạo repository trên https://github.com/ (ví dụ: quan-ly-hanh-kiem).
+3. Upload TOÀN BỘ các file bên trong hanhkiem_revised vào thư mục gốc của repository. Phải có index.html, app.js, teams-addon.js, styles.css và firebase-config.js cùng cấp.
+4. Trên GitHub mở Settings -> Pages. Ở Build and deployment, chọn Deploy from a branch, Branch main, Folder /(root), nhấn Save.
+5. Đợi GitHub Pages triển khai và mở URL hiện ra trong Settings -> Pages trên cả máy tính và điện thoại.
+6. Đăng nhập tài khoản mặc định admin / admin123 và đổi mật khẩu ngay trong phần cài đặt nếu có.
 
-Đã cấu hình Firebase project:
-- Project: quanlyhanhkiem
-- Realtime Database: https://quanlyhanhkiem-default-rtdb.asia-southeast1.firebasedatabase.app
+FIREBASE
+- Website đã được nối với Firebase Realtime Database của project quanlyhanhkiem.
+- Khi database còn trống, website sẽ thử khởi tạo dữ liệu mặc định (hoặc dữ liệu cục bộ hiện có) lên Firebase.
+- Nếu hiện lỗi Permission denied hoặc không thể đồng bộ, cần sửa Rules/Authentication trong Firebase Console. Không đặt Rules cho phép mọi người đọc/ghi lâu dài vì dữ liệu học sinh có thể bị xem hoặc sửa bởi người lạ.
+- Để kiểm tra: mở cùng URL trên hai thiết bị, sửa một thông tin thử và kiểm tra thiết bị kia có cập nhật không.
 
-Cách đưa lên GitHub Pages:
-1. Upload/replace các file trong thư mục này vào repository GitHub.
-2. GitHub Pages -> Deploy from branch -> chọn branch đang dùng và thư mục /root.
-3. Mở website GitHub Pages trên máy tính và điện thoại bằng cùng một URL.
-
-Lưu ý bảo mật:
-- firebase-config.js có thể nằm trên GitHub; các giá trị cấu hình Web App không phải secret key quản trị.
-- Hiện Realtime Database của project đang ở Test mode. Chế độ này cho phép đọc/ghi rộng và KHÔNG nên dùng lâu dài cho dữ liệu học sinh thật.
-- Cần thiết lập Authentication + Rules trước khi đưa vào sử dụng chính thức trên Internet.
+LƯU Ý
+- Tôi không thể tự xuất bản vào tài khoản GitHub/Firebase của bạn nếu chưa có quyền truy cập; ZIP này đã chuẩn bị để bạn tải lên.
+- Trước khi dùng dữ liệu học sinh thật, hãy cấu hình bảo mật Firebase phù hợp và đổi mật khẩu mặc định.
